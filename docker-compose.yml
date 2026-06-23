@@ -1,0 +1,52 @@
+services:
+  db:
+    image: mysql:lts
+    environment:
+      MYSQL_DATABASE: tug
+      MYSQL_USER: tug
+      MYSQL_PASSWORD: tug
+      MYSQL_ROOT_PASSWORD: rootpw
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  backend:
+    build:
+      context: ./backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      PORT: 4000
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: tug
+      DB_PASSWORD: tug
+      DB_NAME: tug
+      CORS_ORIGINS: http://localhost:3000
+    ports:
+      - "4000:4000"
+
+  admin:
+    build:
+      context: ./admin-portal
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:4000
+    ports:
+      - "3000:3000"
+
+volumes:
+  mysql_data:
