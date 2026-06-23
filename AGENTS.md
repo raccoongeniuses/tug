@@ -20,6 +20,7 @@ Technical assessment scaffold for a Full Stack Developer role. The assessment pr
 
 ## Git
 
-- Remote: `git@hanson.github.com:racoongeniuses/tug.git`
-- Default branch: `master`
+- Remote: `git@hanson.github.com:raccoongeniuses/tug.git`
+- Default branch: `main`
 - No root `.gitignore` yet — only `scripts/.gitignore` ignores `node_modules/`
+- Use conventional commits (e.g., `feat:`, `fix:`, `docs:`, `chore:`)
