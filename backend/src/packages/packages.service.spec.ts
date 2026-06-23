@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 import { PackagesService } from './packages.service';
+import { CreatePackageDto } from './dto/create-package.dto';
 import {
   PackageCategory,
   PackageStatus,
@@ -75,14 +76,15 @@ describe('PackagesService', () => {
   });
 
   it('create persists the entity and reloads it with DB defaults', async () => {
-    const dto = {
+    const dto: CreatePackageDto = {
       name: 'Hot Stone',
       price: 120,
       duration_minutes: 90,
-    } as never;
-    repo.create.mockReturnValue({ id: undefined, ...dto } as never);
-    repo.save.mockResolvedValue({ id: 7, ...dto } as never);
-    repo.findOneBy.mockResolvedValue({ id: 7, ...dto } as never);
+    };
+    const partial: Partial<WellnessPackage> = { ...dto };
+    repo.create.mockReturnValue({ id: undefined, ...partial } as WellnessPackage);
+    repo.save.mockResolvedValue({ id: 7, ...partial } as WellnessPackage);
+    repo.findOneBy.mockResolvedValue({ id: 7, ...partial } as WellnessPackage);
 
     const result = await service.create(dto);
 

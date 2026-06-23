@@ -83,7 +83,7 @@ export class WellnessPackage {
     type: 'datetime',
     precision: 3,
     default: () => 'CURRENT_TIMESTAMP(3)',
-    onUpdate: () => 'CURRENT_TIMESTAMP(3)',
+    onUpdate: 'CURRENT_TIMESTAMP(3)',
   })
   updated_at!: Date;
 
