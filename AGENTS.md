@@ -9,7 +9,7 @@ Technical assessment scaffold for a Full Stack Developer role. The assessment pr
 ```
 /backend          — NestJS + TypeScript + MySQL
 /admin-portal     — Next.js + TypeScript
-/mobile-app       — Flutter
+/mobile-app       — React Native + Expo + TypeScript
 /docs             — design doc (Part A of assessment)
 /scripts          — utility scripts
 ```
@@ -17,6 +17,7 @@ Technical assessment scaffold for a Full Stack Developer role. The assessment pr
 ## Existing code
 
 - `scripts/pdf-extract.js` — extracts text from PDFs using `pdf-parse` v2 (`npm run` in `scripts/`). Run with `node pdf-extract.js <path>`.
+- `docs/plan.md` — design document (Part A of assessment)
 
 ## Git
 
