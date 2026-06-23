@@ -19,6 +19,10 @@ Technical assessment scaffold for a Full Stack Developer role. The assessment pr
 - `scripts/pdf-extract.js` — extracts text from PDFs using `pdf-parse` v2 (`npm run` in `scripts/`). Run with `node pdf-extract.js <path>`.
 - `docs/plan.md` — design document (Part A of assessment)
 
+## Config
+
+- `opencode.example.json` — template for local OpenCode config with MCP servers. Copy to `opencode.json` and fill in your keys.
+
 ## Git
 
 - Remote: `git@hanson.github.com:raccoongeniuses/tug.git`
