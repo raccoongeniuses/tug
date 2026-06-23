@@ -2,7 +2,7 @@
 
 ## What this is
 
-Technical assessment scaffold for a Full Stack Developer role. The assessment prompt is in `assessment.md`. No application code exists yet — everything below is to be built.
+Technical assessment scaffold for a Full Stack Developer role. The assessment prompt is in `docs/assessment.md`. No application code exists yet — everything below is to be built.
 
 ## Expected repo structure
 
@@ -18,6 +18,8 @@ Technical assessment scaffold for a Full Stack Developer role. The assessment pr
 
 - `scripts/pdf-extract.js` — extracts text from PDFs using `pdf-parse` v2 (`npm run` in `scripts/`). Run with `node pdf-extract.js <path>`.
 - `docs/plan.md` — design document (Part A of assessment)
+- `docs/database.md` — database schema design and DDL
+- `docs/progress.md` — implementation tracker; edit this as work lands
 
 ## Config
 
