@@ -1,3 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-primary: #0D9488;
+  --color-primary-light: #14B8A6;
+  --color-primary-dark: #0F766E;
+  --color-primary-bg: #F0FDFA;
+  --color-secondary: #8B5CF6;
+  --color-secondary-light: #A78BFA;
+  --color-secondary-bg: #F5F3FF;
+  --color-accent: #F59E0B;
+  --color-accent-bg: #FFFBEB;
+
+  --color-bg: #FAFAF9;
+  --color-surface: #FFFFFF;
+  --color-border: #E7E5E4;
+  --color-border-light: #F5F5F4;
+
+  --color-text: #0C0A09;
+  --color-text-secondary: #78716C;
+  --color-text-muted: #A8A29E;
+
+  --color-success: #059669;
+  --color-success-bg: #ECFDF5;
+  --color-error: #DC2626;
+  --color-error-bg: #FEF2F2;
+  --color-warning: #D97706;
+  --color-warning-bg: #FFFBEB;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --transition: 0.2s ease;
+}
+
 *,
 *::before,
 *::after {
@@ -9,21 +51,26 @@
 html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  color: #1a1a2e;
-  background: #f5f5f7;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
   line-height: 1.6;
 }
 
 a {
-  color: #2563eb;
+  color: var(--color-primary);
   text-decoration: none;
+  transition: color var(--transition);
 }
 
 a:hover {
-  text-decoration: underline;
+  color: var(--color-primary-dark);
+}
+
+input, textarea, select, button {
+  font-family: var(--font-sans);
 }

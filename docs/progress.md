@@ -22,6 +22,7 @@ Track build status across the three surfaces and bonus items. Update this file a
 - [x] Edit package
 - [x] Delete package
 - [x] Loading / error states
+- [x] UI redesign — wellness design system with CSS variables, sticky navbar with brand logo, card-based package grid with status badges and meta rows, category/status filter pills, shimmer loading skeletons, enhanced error/empty states, redesigned form with sections, input groups, spinner, and image preview
 
 ## Mobile App (React Native + Expo)
 
@@ -29,6 +30,13 @@ Track build status across the three surfaces and bonus items. Update this file a
 - [x] Configure API client + types
 - [x] Packages list screen (active only)
 - [x] Loading / error states
+- [x] UI redesign — wellness theme with shared design tokens (colors, spacing, shadows), custom branded header, horizontal category filter chips with emoji icons, redesigned PackageCard with image overlay badges and meta row, redesigned detail screen with price/duration meta cards, "Book" CTA button, pull-to-refresh support
+
+## Skills & Agent Capabilities
+
+- [x] Installed `react-design-patterns` skill (b4r7x/agent-skills)
+- [x] Installed `ui-design` skill (yunshu0909/yunshu_skillshub)
+- [x] Searched for design inspiration using Tavily MCP (admin dashboard trends 2026, wellness mobile app UI 2026)
 
 ## Bonus
 

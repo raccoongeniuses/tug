@@ -1,42 +1,90 @@
 .container {
   max-width: 640px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
 }
 
-.header {
+.breadcrumb {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 8px;
   margin-bottom: 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
 }
 
-.title {
-  font-size: 1.75rem;
+.breadcrumb a {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.sep {
+  color: var(--color-border);
+}
+
+.loadingState {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+.skeletonBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeletonLine {
+  height: 14px;
+  background: linear-gradient(90deg, #E7E5E4 25%, #F5F5F4 50%, #E7E5E4 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.errorState {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.errorIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-error-bg);
+  color: var(--color-error);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
   font-weight: 700;
+  margin: 0 auto 1rem;
+}
+
+.errorState h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.errorState p {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
 }
 
 .backLink {
+  display: inline-block;
   font-size: 0.875rem;
-  color: #6b7280;
-}
-
-.backLink:hover {
-  color: #2563eb;
-}
-
-.loading {
-  padding: 2rem;
-  text-align: center;
-  color: #6b7280;
-}
-
-.error {
-  padding: 1rem;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  border-radius: 8px;
-  color: #991b1b;
-  font-size: 0.875rem;
-  margin-bottom: 1rem;
+  font-weight: 500;
+  color: var(--color-primary);
 }

@@ -31,3 +31,4 @@ Technical assessment scaffold for a Full Stack Developer role. The assessment pr
 - Default branch: `main`
 - No root `.gitignore` yet — only `scripts/.gitignore` ignores `node_modules/`
 - Use conventional commits (e.g., `feat:`, `fix:`, `docs:`, `chore:`)
+- After completing a meaningful unit of work (a working module, a screen, a config change), commit it immediately — don't batch unrelated changes into one commit

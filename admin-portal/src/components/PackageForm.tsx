@@ -59,161 +59,203 @@ export function PackageForm({
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      {errors.length > 0 && (
-        <div className={styles.errors}>
-          {errors.map((err, i) => (
-            <p key={i}>{err}</p>
-          ))}
-        </div>
-      )}
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>Basic Information</h2>
+        <p className={styles.sectionDesc}>Name and description for the package</p>
 
-      <div className={styles.field}>
-        <label htmlFor="name" className={styles.label}>
-          Name *
-        </label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          required
-          minLength={1}
-          maxLength={255}
-          value={formData.name}
-          onChange={handleChange}
-          className={styles.input}
-          placeholder="Package name"
-        />
-      </div>
-
-      <div className={styles.field}>
-        <label htmlFor="description" className={styles.label}>
-          Description
-        </label>
-        <textarea
-          id="description"
-          name="description"
-          maxLength={5000}
-          rows={4}
-          value={formData.description}
-          onChange={handleChange}
-          className={styles.textarea}
-          placeholder="Optional description"
-        />
-      </div>
-
-      <div className={styles.field}>
-        <label htmlFor="image_url" className={styles.label}>
-          Image URL
-        </label>
-        <input
-          id="image_url"
-          name="image_url"
-          type="url"
-          maxLength={500}
-          value={formData.image_url}
-          onChange={handleChange}
-          className={styles.input}
-          placeholder="https://example.com/image.jpg"
-        />
-        {formData.image_url && (
-          <img
-            src={formData.image_url}
-            alt="Preview"
-            style={{
-              maxWidth: 200,
-              maxHeight: 120,
-              marginTop: 8,
-              borderRadius: 4,
-            }}
-            onError={(e) => {
-              (e.target as HTMLImageElement).style.display = "none";
-            }}
-          />
+        {errors.length > 0 && (
+          <div className={styles.errors}>
+            {errors.map((err, i) => (
+              <p key={i}>{err}</p>
+            ))}
+          </div>
         )}
-      </div>
 
-      <div className={styles.row}>
         <div className={styles.field}>
-          <label htmlFor="price" className={styles.label}>
-            Price *
+          <label htmlFor="name" className={styles.label}>
+            Name <span className={styles.required}>*</span>
           </label>
           <input
-            id="price"
-            name="price"
-            type="number"
+            id="name"
+            name="name"
+            type="text"
             required
-            min="0.01"
-            step="0.01"
-            value={formData.price}
+            minLength={1}
+            maxLength={255}
+            value={formData.name}
             onChange={handleChange}
             className={styles.input}
-            placeholder="0.00"
+            placeholder="e.g. Swedish Massage"
           />
         </div>
 
         <div className={styles.field}>
-          <label htmlFor="duration_minutes" className={styles.label}>
-            Duration (min) *
+          <label htmlFor="description" className={styles.label}>
+            Description
           </label>
-          <input
-            id="duration_minutes"
-            name="duration_minutes"
-            type="number"
-            required
-            min="1"
-            step="1"
-            value={formData.duration_minutes}
+          <textarea
+            id="description"
+            name="description"
+            maxLength={5000}
+            rows={4}
+            value={formData.description}
             onChange={handleChange}
-            className={styles.input}
-            placeholder="60"
+            className={styles.textarea}
+            placeholder="Describe what this package includes..."
           />
         </div>
       </div>
 
-      <div className={styles.row}>
-        <div className={styles.field}>
-          <label htmlFor="category" className={styles.label}>
-            Category
-          </label>
-          <select
-            id="category"
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            className={styles.select}
-          >
-            <option value="massage">Massage</option>
-            <option value="facial">Facial</option>
-            <option value="body">Body</option>
-            <option value="meditation">Meditation</option>
-          </select>
-        </div>
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>Media</h2>
+        <p className={styles.sectionDesc}>Package image URL</p>
 
         <div className={styles.field}>
-          <label htmlFor="status" className={styles.label}>
-            Status
+          <label htmlFor="image_url" className={styles.label}>
+            Image URL
           </label>
-          <select
-            id="status"
-            name="status"
-            value={formData.status}
-            onChange={handleChange}
-            className={styles.select}
-          >
-            <option value="draft">Draft</option>
-            <option value="active">Active</option>
-            <option value="archived">Archived</option>
-          </select>
+          <div className={styles.inputWithPreview}>
+            <input
+              id="image_url"
+              name="image_url"
+              type="url"
+              maxLength={500}
+              value={formData.image_url}
+              onChange={handleChange}
+              className={styles.input}
+              placeholder="https://example.com/image.jpg"
+            />
+            {formData.image_url && (
+              <div className={styles.preview}>
+                <img
+                  src={formData.image_url}
+                  alt="Preview"
+                  className={styles.previewImg}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = "none";
+                    (e.target as HTMLImageElement).nextElementSibling?.classList.remove("hidden");
+                  }}
+                />
+                <div className="hidden" style={{ display: "none" }}>
+                  Preview unavailable
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className={styles.submitButton}
-      >
-        {isSubmitting ? "Saving..." : submitLabel}
-      </button>
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>Pricing & Duration</h2>
+        <p className={styles.sectionDesc}>Set the price and length of the package</p>
+
+        <div className={styles.row}>
+          <div className={styles.field}>
+            <label htmlFor="price" className={styles.label}>
+              Price <span className={styles.required}>*</span>
+            </label>
+            <div className={styles.inputGroup}>
+              <span className={styles.inputPrefix}>$</span>
+              <input
+                id="price"
+                name="price"
+                type="number"
+                required
+                min="0.01"
+                step="0.01"
+                value={formData.price}
+                onChange={handleChange}
+                className={styles.input}
+                placeholder="0.00"
+              />
+            </div>
+          </div>
+
+          <div className={styles.field}>
+            <label htmlFor="duration_minutes" className={styles.label}>
+              Duration <span className={styles.required}>*</span>
+            </label>
+            <div className={styles.inputGroup}>
+              <input
+                id="duration_minutes"
+                name="duration_minutes"
+                type="number"
+                required
+                min="1"
+                step="1"
+                value={formData.duration_minutes}
+                onChange={handleChange}
+                className={styles.input}
+                placeholder="60"
+              />
+              <span className={styles.inputSuffix}>min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>Classification</h2>
+        <p className={styles.sectionDesc}>Category and status settings</p>
+
+        <div className={styles.row}>
+          <div className={styles.field}>
+            <label htmlFor="category" className={styles.label}>
+              Category
+            </label>
+            <div className={styles.selectWrapper}>
+              <select
+                id="category"
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                className={styles.select}
+              >
+                <option value="massage">💆 Massage</option>
+                <option value="facial">🧖 Facial</option>
+                <option value="body">🧘 Body</option>
+                <option value="meditation">🕯️ Meditation</option>
+              </select>
+            </div>
+          </div>
+
+          <div className={styles.field}>
+            <label htmlFor="status" className={styles.label}>
+              Status
+            </label>
+            <div className={styles.selectWrapper}>
+              <select
+                id="status"
+                name="status"
+                value={formData.status}
+                onChange={handleChange}
+                className={styles.select}
+              >
+                <option value="draft">Draft</option>
+                <option value="active">Active</option>
+                <option value="archived">Archived</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.actions}>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className={styles.submitButton}
+        >
+          {isSubmitting ? (
+            <span className={styles.submitting}>
+              <span className={styles.spinner} />
+              Saving...
+            </span>
+          ) : (
+            submitLabel
+          )}
+        </button>
+      </div>
     </form>
   );
 }

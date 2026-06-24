@@ -1,26 +1,23 @@
 .container {
   max-width: 640px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
 }
 
-.header {
+.breadcrumb {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 8px;
   margin-bottom: 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
 }
 
-.title {
-  font-size: 1.75rem;
-  font-weight: 700;
+.breadcrumb a {
+  color: var(--color-primary);
+  font-weight: 500;
 }
 
-.backLink {
-  font-size: 0.875rem;
-  color: #6b7280;
-}
-
-.backLink:hover {
-  color: #2563eb;
+.sep {
+  color: var(--color-border);
 }

@@ -44,11 +44,10 @@ export default function NewPackagePage() {
 
   return (
     <main className={styles.container}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>New Package</h1>
-        <Link href="/" className={styles.backLink}>
-          ← Back to list
-        </Link>
+      <div className={styles.breadcrumb}>
+        <Link href="/">Packages</Link>
+        <span className={styles.sep}>/</span>
+        <span>New Package</span>
       </div>
       <PackageForm
         onSubmit={handleSubmit}

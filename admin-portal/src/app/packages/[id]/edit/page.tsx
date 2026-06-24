@@ -60,8 +60,18 @@ export default function EditPackagePage() {
   if (isLoading) {
     return (
       <main className={styles.container}>
-        <h1 className={styles.title}>Edit Package</h1>
-        <div className={styles.loading}>Loading package...</div>
+        <div className={styles.breadcrumb}>
+          <Link href="/">Packages</Link>
+          <span className={styles.sep}>/</span>
+          <span>Edit Package</span>
+        </div>
+        <div className={styles.loadingState}>
+          <div className={styles.skeletonBlock}>
+            <div className={styles.skeletonLine} style={{ width: "30%" }} />
+            <div className={styles.skeletonLine} />
+            <div className={styles.skeletonLine} style={{ width: "60%" }} />
+          </div>
+        </div>
       </main>
     );
   }
@@ -71,15 +81,23 @@ export default function EditPackagePage() {
       error instanceof ApiClientError && error.statusCode === 404;
     return (
       <main className={styles.container}>
-        <h1 className={styles.title}>Edit Package</h1>
-        <div className={styles.error}>
-          {is404
-            ? "Package not found."
-            : `Failed to load package: ${error instanceof Error ? error.message : "Unknown error"}`}
+        <div className={styles.breadcrumb}>
+          <Link href="/">Packages</Link>
+          <span className={styles.sep}>/</span>
+          <span>Edit Package</span>
         </div>
-        <Link href="/" className={styles.backLink}>
-          ← Back to list
-        </Link>
+        <div className={styles.errorState}>
+          <div className={styles.errorIcon}>!</div>
+          <h3>{is404 ? "Package not found" : "Something went wrong"}</h3>
+          <p>
+            {is404
+              ? "The package you're trying to edit doesn't exist."
+              : `${error instanceof Error ? error.message : "Unknown error"}`}
+          </p>
+          <Link href="/" className={styles.backLink}>
+            ← Back to packages
+          </Link>
+        </div>
       </main>
     );
   }
@@ -100,11 +118,10 @@ export default function EditPackagePage() {
 
   return (
     <main className={styles.container}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>Edit Package</h1>
-        <Link href="/" className={styles.backLink}>
-          ← Back to list
-        </Link>
+      <div className={styles.breadcrumb}>
+        <Link href="/">Packages</Link>
+        <span className={styles.sep}>/</span>
+        <span>Edit: {pkg.name}</span>
       </div>
       <PackageForm
         initialData={initialData}
