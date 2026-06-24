@@ -138,6 +138,7 @@ WellnessPackage
 - `duration_minutes`: > 0, integer, required
 - `category`: one of the enum values, optional
 - `status`: one of the enum values, optional (default: 'draft')
+- `image_url`: max 500 chars, valid URL, optional
 
 ### Standard error shape
 

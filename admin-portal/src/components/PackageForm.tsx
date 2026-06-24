@@ -6,6 +6,7 @@ import styles from "./PackageForm.module.css";
 export interface PackageFormData {
   name: string;
   description: string;
+  image_url: string;
   price: string;
   duration_minutes: string;
   category: "massage" | "facial" | "body" | "meditation";
@@ -23,6 +24,7 @@ interface PackageFormProps {
 const defaultFormData: PackageFormData = {
   name: "",
   description: "",
+  image_url: "",
   price: "",
   duration_minutes: "",
   category: "massage",
@@ -97,6 +99,37 @@ export function PackageForm({
           className={styles.textarea}
           placeholder="Optional description"
         />
+      </div>
+
+      <div className={styles.field}>
+        <label htmlFor="image_url" className={styles.label}>
+          Image URL
+        </label>
+        <input
+          id="image_url"
+          name="image_url"
+          type="url"
+          maxLength={500}
+          value={formData.image_url}
+          onChange={handleChange}
+          className={styles.input}
+          placeholder="https://example.com/image.jpg"
+        />
+        {formData.image_url && (
+          <img
+            src={formData.image_url}
+            alt="Preview"
+            style={{
+              maxWidth: 200,
+              maxHeight: 120,
+              marginTop: 8,
+              borderRadius: 4,
+            }}
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = "none";
+            }}
+          />
+        )}
       </div>
 
       <div className={styles.row}>

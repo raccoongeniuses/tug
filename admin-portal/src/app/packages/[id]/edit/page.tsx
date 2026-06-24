@@ -49,6 +49,7 @@ export default function EditPackagePage() {
     updateMutation.mutate({
       name: data.name,
       description: data.description || undefined,
+      image_url: data.image_url || undefined,
       price: parseFloat(data.price),
       duration_minutes: parseInt(data.duration_minutes, 10),
       category: data.category,
@@ -90,6 +91,7 @@ export default function EditPackagePage() {
   const initialData: Partial<PackageFormData> = {
     name: pkg.name,
     description: pkg.description ?? "",
+    image_url: pkg.image_url ?? "",
     price: String(pkg.price),
     duration_minutes: String(pkg.duration_minutes),
     category: pkg.category,

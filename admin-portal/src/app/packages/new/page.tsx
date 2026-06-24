@@ -34,6 +34,7 @@ export default function NewPackagePage() {
     createMutation.mutate({
       name: data.name,
       description: data.description || undefined,
+      image_url: data.image_url || undefined,
       price: parseFloat(data.price),
       duration_minutes: parseInt(data.duration_minutes, 10),
       category: data.category,

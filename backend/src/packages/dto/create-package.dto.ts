@@ -7,6 +7,7 @@ import {
   IsOptional,
   IsPositive,
   IsString,
+  IsUrl,
   MaxLength,
   Min,
 } from 'class-validator';
@@ -28,6 +29,17 @@ export class CreatePackageDto {
   @IsString()
   @MaxLength(5000)
   description?: string;
+
+  @ApiProperty({
+    example: 'https://example.com/massage.jpg',
+    required: false,
+    maxLength: 500,
+  })
+  @IsOptional()
+  @IsString()
+  @IsUrl()
+  @MaxLength(500)
+  image_url?: string;
 
   @ApiProperty({ example: 89.0 })
   @IsNumber({ maxDecimalPlaces: 2 })
