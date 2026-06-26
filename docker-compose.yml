@@ -4,8 +4,8 @@ services:
     environment:
       MYSQL_DATABASE: tug
       MYSQL_USER: tug
-      MYSQL_PASSWORD: tug
-      MYSQL_ROOT_PASSWORD: rootpw
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-tug}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpw}
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
@@ -32,7 +32,7 @@ services:
       DB_HOST: db
       DB_PORT: 3306
       DB_USER: tug
-      DB_PASSWORD: tug
+      DB_PASSWORD: ${DB_PASSWORD:-tug}
       DB_NAME: tug
       CORS_ORIGINS: http://localhost:3000
     ports:
