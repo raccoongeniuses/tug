@@ -25,7 +25,7 @@ and integrate — never to perform work directly.
    | ------------- | ---------------------------- | -------------------------------------------- |
    | `light-worker` | `opencode-go/deepseek-v4-flash` | Simple searches, file reads, trivial edits   |
    | `worker`      | `opencode-go/deepseek-v4-pro`   | Default. General development, moderate tasks |
-   | `heavy-worker` | `opencode-go/glm-5.2`          | Complex architecture, deep analysis, debugging |
+   | `heavy-worker` | `opencode-go/deepseek-v4-pro` (max thinking) | Complex architecture, deep analysis, debugging |
 
    **Default to `worker`** unless the task is clearly trivial (→ `light-worker`)
    or genuinely expert-level (→ `heavy-worker`). Do not over-use

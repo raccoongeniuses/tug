@@ -25,6 +25,13 @@ Technical assessment scaffold for a Full Stack Developer role. The assessment pr
 
 - `opencode.example.json` — template for local OpenCode config with MCP servers. Copy to `opencode.json` and fill in your keys.
 
+## Linting
+
+- After making several changes, always run linters before committing:
+  - **Admin portal:** `npm run lint` (from `admin-portal/`)
+  - **Backend:** Not yet configured
+  - Fix any lint issues before committing.
+
 ## Git
 
 - Remote: `git@hanson.github.com:raccoongeniuses/tug.git`

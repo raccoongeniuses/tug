@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint src/"
   },
   "dependencies": {
     "@tanstack/react-query": "5.101.1",
@@ -15,9 +15,13 @@
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/js": "^10.0.1",
     "@types/node": "^22.0.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
-    "typescript": "6.0.3"
+    "eslint": "^10.5.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "^8.62.0"
   }
 }
