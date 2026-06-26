@@ -7,7 +7,7 @@ A vertical slice prototype of a Wellness Package Management System across three 
 ```
 /backend          — NestJS 11.1.x + TypeScript + MySQL (API server)
 /admin-portal     — Next.js 16.2.x App Router (admin CRUD)
-/mobile-app       — React Native + Expo SDK 55 (read-only browse)
+/mobile-app       — React Native + Expo SDK 54 (read-only browse)
 /docs             — design doc, database schema, progress tracker
 /scripts          — utility scripts (PDF extraction, etc.)
 ```

@@ -6,7 +6,7 @@
 |-----------|---------|
 | NestJS | 11.1.x |
 | Next.js | 16.2.x |
-| Expo SDK | 55.x |
+| Expo SDK | 54.x |
 | React Query | 5.101.x |
 | TypeScript | 6.0.x |
 | MySQL | 9.7 LTS |

@@ -33,8 +33,8 @@ docker run -d \
   --name tug-mysql \
   -e MYSQL_DATABASE=tug \
   -e MYSQL_USER=tug \
-  -e MYSQL_PASSWORD=tug \
-  -e MYSQL_ROOT_PASSWORD=rootpw \
+  -e MYSQL_PASSWORD=${MYSQL_PASSWORD:-tug} \
+  -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-rootpw} \
   -p 3306:3306 \
   mysql:lts \
   --character-set-server=utf8mb4 \
