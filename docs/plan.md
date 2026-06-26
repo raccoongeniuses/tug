@@ -176,23 +176,42 @@ WellnessPackage
 
 ### Tools used
 
-- **OpenCode (CLI)** — primary agent for writing all code, creating files, running commands
-- **GitHub Copilot** — in-editor completions while iterating on component code
+| Tool | Used for | Why it helped |
+|------|----------|---------------|
+| **OpenCode (CLI)** | Primary agent — scaffolding projects, generating modules/controllers/DTOs/components, writing config files, running linters/tests, creating Dockerfiles and docker-compose | Terminal-native, no context-switching, can delegate work to specialized subagents (light/worker/heavy) |
+| **GitHub Copilot** | In-editor completions while iterating on component code (CSS, prop forwarding, repetitive patterns) | Fast, in-flow suggestions that don't break concentration |
+| **Tavily MCP** | Web research — design inspiration for admin dashboards and wellness mobile UIs in 2026 | Integrated directly into OpenCode, so the agent could search the web and incorporate findings into UI redesigns |
 
 ### Prompts that worked well
 
-1. **"Create a NestJS module with CRUD for WellnessPackage entity including DTOs, service, controller, TypeORM entity, and MySQL connection config"** — produced a complete, working module in one shot with proper dependency injection and validation decorators.
+1. **"Create a NestJS module with CRUD for WellnessPackage entity including DTOs, service, controller, TypeORM entity, and MySQL connection config."**
+   Why it worked: Specific about the framework, pattern (CRUD), architecture (module with DTOs/service/controller), and database. The agent produced a complete working module in one shot — DTOs with class-validator, service with repository pattern, controller with proper HTTP semantics, and entity with correct decorators.
 
-2. **"Generate a Next.js App Router page with a data table that lists packages from /admin/packages, with inline edit/delete buttons"** — got a well-structured page with loading states and error handling, needed only minor styling adjustments.
+2. **"Redesign the admin portal with a wellness/holistic theme. Use a teal primary color palette, Inter font, CSS custom properties. Build a sticky navbar with logo, card-based grid with status badges, shimmer loading skeletons, filter pills..."**
+   Why it worked: Concrete visual constraints (teal palette, Inter font, CSS variables) and specific UI elements (badges, cards, skeletons). The long but unambiguous prompt produced a coherent design system rather than ad-hoc inline styles.
 
-### Where AI got it wrong
+3. **"Create a `docker-compose.yml` with three services: MySQL `mysql:lts` (tug db, tug user, utf8mb4), NestJS backend (builds from `./backend`, waits for MySQL healthy, port 4000), and Next.js admin portal (builds from `./admin-portal`, port 3000)."**
+   Why it worked: Exact image name, dependency ordering (`depends_on` with health check), and each service's build context were specified. The agent wrote a correct compose file with proper volume mounts, environment variables, and network configuration on the first try.
 
-**Prompt:** "Create a React Native Expo screen that fetches and displays packages"
-**Issue:** AI generated a bare React Native component using `ScrollView` + `fetch` without Expo's recommended patterns (no `expo-router`, no loading states, no typed API client).
-**Correction:** Refined the prompt to specify Expo Router, React Query, and a typed API client. After regenerating, the code matched the project conventions.
+### Where AI got it wrong (and how I caught it)
+
+**Example 1: React Native convention mismatch**
+- **Prompt:** "Create a React Native Expo screen that fetches and displays packages"
+- **Issue:** AI generated a bare `ScrollView` + `useEffect` + `fetch` — no `expo-router`, no React Query, no typed API client. Functional but ignored all project conventions.
+- **How I caught it:** Manually reviewing the file, I noticed it bypassed the existing `src/api/client.ts` and `src/types/index.ts` modules. The component had no loading/error states.
+- **Correction:** Refined the prompt: "Use expo-router for the screen, React Query for data fetching, a typed API client from `src/api/client.ts`, and shared types from `src/types/index.ts`." The regenerated output was idiomatic.
+- **Lesson:** AI defaults to the simplest implementation. You must cite specific project files, conventions, and libraries in prompts if you want them followed.
+
+**Example 2: Docker production build config mismatch**
+- **Prompt:** "Create a Dockerfile for the Next.js admin portal"
+- **Issue:** AI generated `COPY .next/` instead of `COPY .next/standalone/`, missing that `next.config.ts` had `output: 'standalone'`. Container would fail at runtime.
+- **How I caught it:** Mentally tracing the Dockerfile build steps — if `next build` writes to `.next/standalone/server.js`, the COPY should point there.
+- **Correction:** Prompted the agent to fix both the COPY path and WORKDIR to target the standalone output directory.
+- **Lesson:** AI assumes default build behavior. When you use non-default config, you must verify the AI understood downstream effects.
 
 ### Where I chose NOT to use AI
 
-- **Architecture decisions** — AI tends to over-engineer (suggesting microservices, Redis caching, complex auth flows). I scoped these manually.
-- **Trade-off analysis** — AI cannot evaluate team context or assessment constraints. These decisions were mine.
-- **Reviewing AI output** — every generated file was read and validated manually before committing. AI writes fast but sometimes wrong.
+- **Architecture & scoping** — AI tends to over-engineer (suggesting microservices, Redis caching, complex auth). I scoped to a monolith with no auth because the domain is trivial and the 4–8 hour budget is tight.
+- **Trade-off analysis** — AI cannot evaluate assessment constraints or team context. Decisions like Expo over Flutter, monolith over microservices, no auth in prototype were mine.
+- **Code review of every AI-generated file** — I read every file before committing. Caught bugs (missing NotFoundException guard in delete, standalone output mismatch, wrong Expo SDK version) that the agent wouldn't self-detect.
+- **Commit strategy** — Deliberately committed after each meaningful unit of work with conventional commit messages, keeping history clean and reviewable. AI shouldn't auto-commit.

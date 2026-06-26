@@ -139,7 +139,7 @@ Runs Jest unit tests on the service layer. No integration or E2E tests are inclu
 - [x] Swagger / OpenAPI docs
 - [x] Unit tests on service layer
 - [x] Environment config (`.env.example` files per surface)
-- [ ] Screenshots (admin, mobile, sample API response) — deferred
+- [x] Screenshots (admin, mobile, sample API response) — see [`docs/screenshots/`](docs/screenshots/)
 
 ## AI workflow
 

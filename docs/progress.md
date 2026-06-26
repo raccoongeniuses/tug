@@ -44,4 +44,4 @@ Track build status across the three surfaces and bonus items. Update this file a
 - [x] Swagger / OpenAPI docs
 - [x] Unit tests on service layer
 - [x] README with setup steps and run instructions
-- [ ] Screenshots (admin, mobile, sample API response)
+- [x] Screenshots (admin, mobile, sample API response)
